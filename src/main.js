@@ -3,6 +3,7 @@ import Vue from "vue";
 // 导入App.vue文件
 import App from "./App.vue";
 
+
 // 完整引入mint-ui
 // import MintUI from "mint-ui";
 // import "mint-ui/lib/style.css";
@@ -14,6 +15,8 @@ import {
 Vue.component(Header.name, Header)
 // 导入mui样式
 import './lib/mui/css/mui.css'
+import './lib/mui/css/icons-extra.css'
+import './lib/mui/fonts/mui.ttf'
 
 // 按需引入
 // import {
