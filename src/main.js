@@ -18,6 +18,11 @@ import './lib/mui/css/mui.css'
 import './lib/mui/css/icons-extra.css'
 import './lib/mui/fonts/mui.ttf'
 
+// 配置路由
+import VueRouter from 'vue-router'
+Vue.use(VueRouter)
+import router from './router.js'
+
 // 按需引入
 // import {
 //   Button
@@ -31,5 +36,6 @@ const vm = new Vue({
   el: "#app",
   render: function (createElement) {
     return createElement(App);
-  }
+  },
+  router
 });
