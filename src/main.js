@@ -13,6 +13,17 @@ import {
   Header
 } from 'mint-ui'
 Vue.component(Header.name, Header)
+
+
+// 轮播图部分
+import {
+  Swipe,
+  SwipeItem
+} from 'mint-ui';
+Vue.component(Swipe.name, Swipe);
+Vue.component(SwipeItem.name, SwipeItem);
+
+
 // 导入mui样式
 import './lib/mui/css/mui.css'
 import './lib/mui/css/icons-extra.css'
@@ -22,6 +33,8 @@ import './lib/mui/fonts/mui.ttf'
 import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 import router from './router.js'
+
+
 
 // 按需引入
 // import {
