@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+  
+
+  function myajax(type,url){
+    return new Promise(function(resolve,reject){
+      //创建一个xhr对象
+      const xhr = new XMLHttpRequest()
+      //输入号码
+      xhr.open(type,url)
+      //拨打  
+      xhr.send()
+      //监听数据什么时候返回
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+          var data = JSON.parse(xhr.responseText)
+          //把数据传递出去
+          resolve(data)
+        }
+      }
+    })
+  }
+
+  myajax('get','http://192.168.18.57:3005/api/getlunbo')
+  .then(res=>{
+    console.log(res)
+  })
+  </script>
+</body>
+</html>

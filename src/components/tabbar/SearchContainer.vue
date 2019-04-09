@@ -1,14 +1,16 @@
 <template>
   <div>
-    <h3>SearchContainer</h3>
+    <h3>Search</h3>
+    <div style="height:600px;visibility:hidden;"></div>
   </div>
 </template>
 <script>
 export default {
-  data() {
-    return {};
+  data () {
+    return {
+    };
   }
-};
+}
 </script>
 <style lang="scss" scoped>
 </style>
