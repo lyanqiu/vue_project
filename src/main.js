@@ -50,6 +50,9 @@ Vue.use(MintUI)
 import './lib/mui/css/mui.css'
 import './lib/mui/css/icons-extra.css'
 
+import VuePreview from 'vue-preview'
+Vue.use(VuePreview)
+
 //配置路由
 import VueRouter from 'vue-router'
 Vue.use(VueRouter)
