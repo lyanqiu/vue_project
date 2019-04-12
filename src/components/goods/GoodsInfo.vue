@@ -25,7 +25,7 @@
           </p>
           <p>
             购买数量：
-            <number-box @getCount="getSelectedCount"></number-box>
+            <number-box @getCount="getSelectedCount" :max="goodsinfo.stock_quantity"></number-box>
           </p>
           <p>
             <mt-button type="primary" size="small">立即购买</mt-button>
@@ -130,15 +130,7 @@ export default {
       this.SelectedCount = count;
     }
   },
-  props: ["max"],
-  watch: {
-    max: function(mewVal, oldVal) {
-      // 在js中设置num的最大值
-      mui(".mui-numbox")
-        .numbox()
-        .setOption("max", newVal);
-    }
-  },
+
   components: {
     swiper,
     NumberBox
