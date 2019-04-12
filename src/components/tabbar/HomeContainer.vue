@@ -1,12 +1,7 @@
 <template>
   <div>
-    <!-- 轮播图 -->
-    <mt-swipe :auto="4000">
-      <mt-swipe-item v-for="(item,index) in list" :key="index">
-        <img :src="item.img" alt>
-      </mt-swipe-item>
-    </mt-swipe>
     <!-- /轮播图 -->
+    <swiper :list="list" :isfull="true"></swiper>
     <!-- 九宫格 -->
     <ul class="mui-table-view mui-grid-view mui-grid-9">
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
@@ -53,6 +48,7 @@
 <script>
 // 生命周期函数 created 发ajax mounted 操作dom
 import { Toast } from "mint-ui";
+import Swiper from "../subcomponents/Swiper.vue";
 export default {
   created() {
     this.getList();
@@ -76,19 +72,13 @@ export default {
     return {
       list: [] //轮播图的数据
     };
+  },
+  components: {
+    Swiper
   }
 };
 </script>
 <style lang="scss" scoped>
-.mint-swipe {
-  height: 200px;
-  .mint-swipe-item {
-    img {
-      width: 100%;
-      height: 200px;
-    }
-  }
-}
 .mui-grid-view.mui-grid-9 {
   background: #fff;
   border: none;

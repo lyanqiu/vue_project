@@ -1,6 +1,6 @@
 <template>
   <div class="goods-list">
-    <div class="goods-item" v-for="item in list" :key="item.id">
+    <div @click="goDetail(item.id)" class="goods-item" v-for="item in list" :key="item.id">
       <img :src="item.img_url" alt>
       <h1 class="title">{{item.title}}</h1>
       <div class="info">
@@ -41,6 +41,15 @@ export default {
       //   console.log(12);
       this.pageindex++;
       this.getList();
+    },
+    goDetail(id) {
+      //   console.log(id);
+      //   第一种方式
+      //   this.$router.push("/home/goodsinfo/" + id);
+      //   第二种方式
+      //   this.$router.push({ path: "/home/goodsinfo/" + id });
+      // 第三种方式
+      this.$router.push({ name: "goodsinfo", params: { id } });
     }
   }
 };
