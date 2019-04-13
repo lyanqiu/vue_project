@@ -1,7 +1,11 @@
 <template>
   <div class="app-container">
     <!-- 头部 -->
-    <mt-header fixed title="黑马程序员"></mt-header>
+    <mt-header fixed title="黑马程序员">
+      <span slot="left" @click="goBack" v-show="$route.path != '/home'">
+        <mt-button icon="back">返回</mt-button>
+      </span>
+    </mt-header>
     <!-- 主体部分 -->
     <transition>
       <router-view></router-view>
@@ -19,7 +23,7 @@
       </router-link>
       <router-link class="mui-tab-item1" to="/shopcar">
         <span class="mui-icon mui-icon-extra mui-icon-extra-cart">
-          <span class="mui-badge" id="badge">0</span>
+          <span class="mui-badge" id="badge">{{$store.getters.total}}</span>
         </span>
         <span class="mui-tab-label">购物车</span>
       </router-link>
@@ -35,7 +39,13 @@
 <script>
 // import { Toast } from 'mint-ui';
 // Toast('提示信息')
-export default {};
+export default {
+  methods: {
+    goBack() {
+      this.$router.go(-1);
+    }
+  }
+};
 </script>
 
 

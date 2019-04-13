@@ -66,11 +66,111 @@ Vue.filter('dateFormat', function (dataStr, pattern = 'YYYY-MM-DD HH:mm:ss') {
   return moment(dataStr).format(pattern)
 })
 
+import Vuex from 'vuex'
+Vue.use(Vuex)
+const store = new Vuex.Store({
+  state: {
+    // 当页面一打开的时候就显示存储的数据
+    car: JSON.parse(localStorage.getItem('car')) || []
+  },
+  mutations: {
+    addCar: function (state, obj) {
+      // console.log(obj);
+      var flag = false
+      for (var i = 0; i < state.car.length; i++) {
+        if (state.car[i].id == obj.id) {
+          state.car[i].count += obj.count
+          flag = true
+          break
+        }
+      }
+      if (!flag) {
+        state.car.push(obj)
+      }
+      // 把最新的car数据存在本地存储，可以在页面刷新的时候数据还存在
+      localStorage.setItem('car', JSON.stringify(state.car))
+      // 第二种方式
+      // var flag = false
+      // state.car.some(item => {
+      //   if (item.id == obj.id) {
+      //     item.count += obj.count
+      //     flag = true
+      //     return true
+      //   }
+      // })
+      // if (!flag) {
+      //   state.car.push(obj)
+      // }
 
+    },
+    updateGoodsInfo(state, goodsinfo) {
+      state.car.some(item => {
+        if (item.id == goodsinfo.id) {
+          item.count = parseInt(goodsinfo.count);
+          return true;
+        }
+      });
+      localStorage.setItem("car", JSON.stringify(state.car));
+    },
+    removeFormCar(state, id) {
+      state.car.some((item, i) => {
+        if (item.id == id) {
+          state.car.splice(i, 1)
+          return true
+        }
+      })
+      localStorage.setItem("car", JSON.stringify(state.car));
+    },
+    updateSelected(state, id) {
+      var index = state.car.findIndex(item => item.id == id)
+      state.car[index].selected = !state.car[index].selected
+      localStorage.setItem("car", JSON.stringify(state.car));
+    }
+  },
+  getters: {
+    total(state) {
+      var sum = 0;
+      state.car.forEach(item => {
+        sum += item.count
+      })
+      return sum
+    },
+    // 映射id和商品数量
+    getGoodsCount(state) {
+      var obj = {}
+      state.car.forEach(item => {
+        obj[item.id] = item.count
+      })
+      return obj
+    },
+    getSelected(state) {
+      var obj = {}
+      state.car.forEach(item => {
+        obj[item.id] = item.selected
+      })
+      return obj
+    },
+    getTotal(state) {
+      var obj = {
+        count: 0,
+        sum: 0
+      }
+      state.car.forEach(item => {
+        if (item.selected) {
+          obj.count += parseInt(item.count)
+          obj.sum += item.price * item.count
+        }
+      })
+      return obj
+    }
+  },
+  actions: {}
+})
 const vm = new Vue({
   el: '#app',
   render: function (createElement) {
     return createElement(App)
   },
-  router
+  router,
+  store
 })

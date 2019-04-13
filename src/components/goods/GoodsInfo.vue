@@ -25,7 +25,7 @@
           </p>
           <p>
             购买数量：
-            <number-box @getCount="getSelectedCount" :max="goodsinfo.stock_quantity"></number-box>
+            <number-box @getcount="getSelectedCount" :max="goodsinfo.stock_quantity"></number-box>
           </p>
           <p>
             <mt-button type="primary" size="small">立即购买</mt-button>
@@ -101,6 +101,13 @@ export default {
     },
     addToShopCar() {
       this.ballFlag = !this.ballFlag;
+      const obj = {
+        id: this.id,
+        count: this.SelectedCount,
+        price: this.goodsinfo.sell_price,
+        selected: true
+      };
+      this.$store.commit("addCar", obj);
     },
     beforeEnter(el) {
       el.style.transform = "translate(0,0)";
