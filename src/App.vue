@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
     <!-- 头部 -->
-    <mt-header fixed title="黑马程序员">
+    <mt-header fixed title="淘乐熊">
       <span slot="left" @click="goBack" v-show="$route.path != '/home'">
         <mt-button icon="back">返回</mt-button>
       </span>
